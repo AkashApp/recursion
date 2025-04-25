@@ -27,3 +27,49 @@ const factorial = (n) => {
     return n * factorial(n-1);
 }
 console.log(factorial(4));
+
+// create an array with ramge of numbers
+const range = (start, end) => {
+    if(start > end){
+        return []
+    }else{
+        let number = range(start, end-1);
+        number.push(end);
+        return number
+    }
+}
+console.log(range(0,5));
+
+// Fibonacci Number
+const fibonacci = (n) => {
+    if(n <= 1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+console.log(fibonacci(8));
+
+// reverse a string
+const reverse = (str) => {
+    if(str.length <= 1) return str;
+    return reverse(str.substr(1)) + str[0];
+}
+console.log(reverse("hello"));
+
+// Subsets backtracking algorithm
+let result = [];
+let temp = [];
+const subsets = (arr) => {
+    let result = [];
+    let temp =[];
+    function recursiveSubset(arr,i){
+        if(i === arr.length){
+            return result.push([...temp]);
+        }
+        temp.push(arr[i]);
+        recursiveSubset(arr,i+1);
+        temp.pop();
+        recursiveSubset(arr,i+1);
+    }
+    recursiveSubset(arr,0);
+    return result;
+}
+console.log(subsets([1,2,3]));
